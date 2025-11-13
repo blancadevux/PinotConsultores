@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pinot Consultores SPA | Software con impacto sostenible</title>
+  
+  <meta name="description" content="Pinot Consultores SPA es una empresa chilena de desarrollo de software desde Puerto Varas, creando soluciones tecnológicas alineadas con el medio ambiente y los Objetivos de Desarrollo Sostenible.">
+  <link rel="stylesheet" href="./assets/style.css" />
+  <!-- Dominio canónico y metadatos sociales -->
+  <link rel="canonical" href="https://pinotconsultores.cl" />
+  <meta property="og:site_name" content="Pinot Consultores SPA" />
+  <meta property="og:url" content="https://pinotconsultores.cl" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <!-- Favicon (usa el logo PNG existente) -->
+  <link rel="icon" href="./assets/logo/Logo hojas Pinot Consultores.png" />
+  
+</head>
+<body>
+  <!-- Vue app -->
+  <div id="app">
+    <header>
+      <div class="container">
+        <nav class="nav">
+          <div class="logo">
+  <img
+    src="./assets/logo/Logo hojas Pinot Consultores.png"
+    alt="Logo Pinot Consultores SPA"
+    class="logo-img"
+  />
+  <div class="logo-text">
+    <span>{{ companyName }}</span>
+    <span class="tagline">{{ tagline }}</span>
+  </div>
+</div>
+          <div class="nav-links">
+            <a href="#inicio">Inicio</a>
+            <a href="#nosotros">Nosotros</a>
+            <a href="#soluciones">Soluciones</a>
+            <a href="#proyectos">Proyectos</a>
+            <a href="#fundadores">Fundadores</a>
+            <a href="#contacto">Contacto</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section id="inicio" class="hero">
+        <div class="container">
+          <div class="hero-grid">
+            <div>
+              <h1 class="hero-title">
+                {{ heroTitleMain }}
+                <span class="hero-highlight">{{ heroTitleHighlight }}</span>.
+              </h1>
+              <p class="hero-text">
+                En <strong>{{ companyName }}</strong> {{ heroText }}
+              </p>
+
+              <div class="hero-tags">
+                <span v-for="tag in heroTags" :key="tag" class="tag">
+                  {{ tag }}
+                </span>
+              </div>
+
+              <div class="hero-actions">
+                <a href="#contacto">
+                  <button class="btn-primary">Conversemos un proyecto</button>
+                </a>
+                <a href="#proyectos">
+                  <button class="btn-ghost">Ver proyectos en producción</button>
+                </a>
+              </div>
+            </div>
+
+            <aside class="hero-side">
+              <h3>Desde Puerto Varas para Chile</h3>
+              <ul>
+                <li><span>+ Tecnología</span> al servicio de personas y territorios.</li>
+                <li><span>+ Agua</span> protegida mediante gestión digital y datos.</li>
+                <li><span>+ Comunidad</span> mediante medios locales y transparencia.</li>
+                <li><span>Escalabilidad</span> para expandir soluciones más allá de Chile.</li>
+              </ul>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- NOSOTROS -->
+      <section id="nosotros">
+        <div class="container">
+          <span class="pill"><span class="icon">🌱</span> Empresa chilena de base tecnológica</span>
+          <h2>Quiénes somos</h2>
+          <div class="nosotros-grid">
+            <div>
+              <p class="section-intro">
+                {{ aboutIntro }}
+              </p>
+              <ul class="nosotros-list">
+                <li v-for="item in aboutList1" :key="item">{{ item }}</li>
+              </ul>
+            </div>
+            <div>
+              <p style="font-size:0.9rem; color:#4b5563; margin-bottom:0.6rem;">
+                Creemos en la tecnología como herramienta para:
+              </p>
+              <ul class="nosotros-list">
+                <li v-for="item in aboutList2" :key="item">{{ item }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SOLUCIONES -->
+      <section id="soluciones">
+        <div class="container">
+          <h2>Soluciones y enfoque</h2>
+          <p class="section-intro">
+            {{ solutionsIntro }}
+          </p>
+
+          <div class="cards-grid">
+            <div v-for="solution in solutions" :key="solution.title" class="card">
+              <h3>{{ solution.title }}</h3>
+              <small>{{ solution.subtitle }}</small>
+              <p>{{ solution.text }}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROYECTOS -->
+      <section id="proyectos">
+        <div class="container">
+          <h2>Proyectos en producción</h2>
+          <p class="section-intro">
+            {{ projectsIntro }}
+          </p>
+
+          <div class="cards-grid">
+            <div v-for="project in projects" :key="project.title" class="card">
+              <h3>{{ project.title }}</h3>
+              <small>{{ project.subtitle }}</small>
+              <p>{{ project.description }}</p>
+              <p v-if="project.site || project.code">
+                <span v-if="project.site">
+                  Sitio:
+                  <a :href="project.site" target="_blank" rel="noopener noreferrer">
+                    {{ project.siteLabel || project.site }}
+                  </a>
+                  <br />
+                </span>
+                <span v-if="project.code">
+                  Código:
+                  <a :href="project.code" target="_blank" rel="noopener noreferrer">
+                    {{ project.codeLabel || 'Repositorio en GitHub' }}
+                  </a>
+                </span>
+              </p>
+              <p v-if="project.extra">{{ project.extra }}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FUNDADORES -->
+      <section id="fundadores">
+        <div class="container">
+          <h2>Fundadores</h2>
+          <p class="section-intro">
+            {{ foundersIntro }}
+          </p>
+
+          <div class="founders-grid">
+            <div v-for="founder in founders" :key="founder.name" class="founder">
+              <h3>{{ founder.name }}</h3>
+              <small>{{ founder.role }}</small>
+              <p>{{ founder.description }}</p>
+              <p>
+                LinkedIn:
+                <a :href="founder.linkedin" target="_blank" rel="noopener noreferrer">
+                  Perfil de {{ founder.shortName }}
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACTO -->
+      <section id="contacto">
+        <div class="container">
+          <h2>Contacto</h2>
+          <p class="section-intro">
+            {{ contactIntro }}
+          </p>
+
+          <div class="contact-box">
+            <p><strong>Escríbenos:</strong></p>
+            <p>
+              Correo:
+              <a :href="`mailto:${contactEmail}`">
+                {{ contactEmail }}
+              </a>
+            </p>
+            <p>
+              Localización: {{ location }}.
+            </p>
+            <p class="contact-note">
+              {{ contactNote }}
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      © {{ year }} {{ companyName }} · Desde Puerto Varas para Chile y el mundo. ·
+      <a href="https://pinotconsultores.cl" target="_blank" rel="noopener noreferrer">pinotconsultores.cl</a>
+    </footer>
+  </div>
+
+  <!-- Vue 3 -->
+  <script type="module">
+    import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+
+    const app = createApp({
+      data() {
+        return {
+          companyName: '',
+          tagline: '',
+          year: new Date().getFullYear(),
+          heroTitleMain: 'Desarrollo de software desde el sur de Chile,',
+          heroTitleHighlight: 'alineado con el medio ambiente',
+          heroText:
+            'diseñamos y desarrollamos soluciones digitales que apoyan la gestión de recursos críticos como el agua, fortalecen medios locales y promueven comunidades más sostenibles.',
+          heroTags: [
+            'ODS · Innovación sostenible',
+            'Software a medida',
+            'Agua y territorios rurales'
+          ],
+          aboutIntro:
+            'Pinot Consultores SPA nace en Puerto Varas con el propósito de unir desarrollo de software, gestión pública/privada y sostenibilidad, aportando soluciones concretas a desafíos reales en territorios urbanos y rurales.',
+          aboutList1: [
+            'Desarrollo de plataformas web enfocadas en impacto social y ambiental.',
+            'Enfoque en comunidades rurales, gestión del agua y medios locales.',
+            'Visión de escalabilidad: soluciones replicables en distintas comunas y países.',
+            'Alianza entre experiencia técnica, financiera y territorial.'
+          ],
+          aboutList2: [
+            'Mejorar la transparencia en la gestión de servicios esenciales.',
+            'Empoderar a comunidades a través de información y datos.',
+            'Cuidar el agua como recurso estratégico para el presente y futuro.',
+            'Conectar talento regional con desafíos globales.'
+          ],
+          solutionsIntro:
+            'Diseñamos y desarrollamos software centrado en la experiencia de usuarios reales: comités de agua potable rural, municipios, medios locales, emprendedores y organizaciones que desean digitalizar sus procesos con sentido.',
+          solutions: [
+            {
+              title: 'Desarrollo de software a medida',
+              subtitle: 'Arquitectura, desarrollo, integración y soporte',
+              text: 'Construimos aplicaciones web modernas, modulares y escalables, adaptadas a la realidad de cada territorio y organización.'
+            },
+            {
+              title: 'Transformación digital territorial',
+              subtitle: 'Foco en agua, municipios y comunidades rurales',
+              text: 'Apoyamos procesos de modernización en servicios esenciales, incorporando datos, trazabilidad y transparencia para mejorar la toma de decisiones.'
+            },
+            {
+              title: 'Productos propios',
+              subtitle: 'Medios locales, agua purificada y gestión APR',
+              text: 'Contamos con soluciones ya en funcionamiento que pueden ser adaptadas y escaladas a distintas comunas y regiones.'
+            }
+          ],
+          projectsIntro:
+            'Estos son algunos de los proyectos que hoy ya están operando y creciendo, construidos desde Pinot Consultores SPA junto a aliados locales.',
+          projects: [
+            {
+              title: 'Voces de Paillaco · Diario Digital',
+              subtitle: 'Medio local · Democracia y participación',
+              description:
+                'Plataforma para gestión de noticias, columnas y contenidos locales, fortaleciendo la comunicación en el territorio.',
+              site: 'https://www.lavozdepaillaco.cl',
+              siteLabel: 'www.lavozdepaillaco.cl'
+            },
+            {
+              title: 'Pureza del Sur · Agua Purificada',
+              subtitle: 'Venta de agua en dispensadores',
+              description:
+                'Sistema para gestionar la venta de agua purificada, clientes, puntos de recarga y operación de dispensadores.',
+              site: 'https://www.purezadelsur.cl',
+              siteLabel: 'www.purezadelsur.cl'
+            },
+            {
+              title: 'Sistema de Gestión de Agua Potable Rural (APR)',
+              subtitle: 'Innovación para comités y cooperativas de agua',
+              description:
+                'Plataforma para modernizar la gestión de APR: usuarios, consumos, facturación, alertas y reportes, con foco en cuidado del recurso.',
+              extra:
+                'En desarrollo y piloto con miras a escalar a distintos territorios rurales de Chile.'
+            }
+          ],
+          foundersIntro:
+            'Pinot Consultores SPA está fundada por un equipo complementario en experiencia técnica, financiera y de gestión pública, con fuerte arraigo en el sur de Chile.',
+          founders: [
+            {
+              name: 'Omar Gómez',
+              shortName: 'Omar',
+              role: 'Co-fundador · Ingeniero en Informática',
+              description:
+                'Desarrollador y arquitecto de software con amplia experiencia en proyectos de transformación digital, integración de sistemas y productos tecnológicos escalables.',
+              linkedin: 'https://www.linkedin.com/in/omarfdogomez/'
+            },
+            {
+              name: 'Blanca Pinot Jara',
+              shortName: 'Blanca',
+              role: 'Co-fundadora · Gestión financiera y proyectos',
+              description:
+                'Contadora Auditora, Magíster en Economía y Gestión Regional, con más de 10 años de experiencia en administración financiera pública, presupuestos y proyectos con impacto territorial.',
+              linkedin: 'https://www.linkedin.com/in/blancapinot/'
+            }
+          ],
+          contactIntro:
+            '¿Tienes un proyecto, una idea o un problema que podría resolverse con tecnología alineada al medio ambiente y a la realidad de tu territorio? Hablemos.',
+          contactEmail: 'contacto@pinotconsultores.cl',
+          location: 'Puerto Varas, Región de Los Lagos, Chile',
+          contactNote:
+            'También podemos coordinar una reunión virtual para conocer tus necesidades y evaluar posibles soluciones tecnológicas.'
+        };
+      }
+    });
+
+    app.mount('#app');
+  </script>
+</body>
+</html>
